@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class controller : MonoBehaviour
+public class Cameroncontroller : MonoBehaviour
 {
     Animator animator;
     // Start is called before the first frame update
-    public GameObject Effect1;
+    public GameObject Effect;
     public GameObject Effect2;
     private bool fast;
     private bool music;
@@ -82,9 +82,10 @@ public class controller : MonoBehaviour
         {
             StartCoroutine(ExampleCoroutine());
         }
-                if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
         {
             animator.SetBool("walk", true);
+            Effect2.SetActive(true);
         }
         else
         {
@@ -95,9 +96,16 @@ public class controller : MonoBehaviour
             animator.SetBool("sword", true);
             Debug.Log("" + Time.time);
         }
+        if (Input.GetKey(KeyCode.Alpha1))
+        {
+            if (sword)
+            {
+                animator.SetBool("sword", false);
+            }
+        }
         if (Input.GetKey(KeyCode.F))
         {
-                StartCoroutine(swordy());
+            StartCoroutine(swordy());
         }
         //else
             //{
@@ -115,41 +123,6 @@ public class controller : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.Space))
         {
             StartCoroutine(runjump());
-        }
-
-        if (Input.anyKeyDown) // Check if any key is pressed down
-            {
-                if (fast) // Stop dancing only if currently dancing
-                {
-                    animator.SetBool("fast", false);
-                    //animator.SetBool("isidle", false);
-                    if (Effect2.activeSelf)
-                    {
-                        Effect2.SetActive(false);
-                    }
-                    if (Effect1.activeSelf)
-                    {
-                        Effect1.SetActive(false);
-                    }
-                }
-            }
-        if (fast && Input.GetKey("c"))
-        {
-            if (Effect2.activeSelf)
-            {
-                Effect2.SetActive(false);
-            }
-            Effect1.SetActive(true);
-        }
-        if (fast && Input.GetKey("b"))
-        {
-            Debug.Log(Effect1);
-            if (Effect1.activeSelf)
-            {
-                Debug.Log("effect 1 turned off");
-                Effect1.SetActive(false);
-            }
-            Effect2.SetActive(true);
         }
 
 
